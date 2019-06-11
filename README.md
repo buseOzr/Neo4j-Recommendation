@@ -22,3 +22,8 @@ CSV Format for Transactions.csv
 |ccalhoun  |	5	          | 9	     |6	   |9   |	ahendrix	|Booked|
 |
 Sample values:
+
+
+| username:ID   | firstName     | lastName | passportNumber  | region       | :LABEL   |
+| ------------- |:-------------:| -----:   | -----:          | -----:       | -----:   |
+| ahendrix      |Adrian| Hendrix   | 81EItsodl              | el Poblenou  | Customer |
