@@ -88,7 +88,15 @@ def calculate_shortestpath(username):
     WHERE algo.isFinite(distance) = true AND 'Tasker' IN LABELS(Node) 
     RETURN Node.username, distance 
     ORDER BY distance ASC 
-    find_similarities()
     '''
     return graph.run(query)
 
+def find_fallBehindTasker(startTime, endTime):
+    query='''
+    match(c:Customer)-[b:booked]->(t:Tasker) WHERE b.transactionTime> {startTime} AND b.transactionTime < {endTime}
+    WITH t, count(b) as bookingPerTasker with avg(bookingPerTasker) as average 
+    match (c:Customer)-[b:booked]->(t:Tasker) WHERE b.transactionTime> {startTime} AND b.transactionTime < {endTime} 
+    with t,count(b) as count1 ,average where count1<average
+    return t.username,count1 
+    '''
+    return graph.run(query)
